@@ -2,8 +2,7 @@ name: "Create Issue Comment via API"
 
 on:
   repository_dispatch:
-    types:
-      - webhook
+    types: [webhook]
 
 jobs:
   comment-on-issue:
