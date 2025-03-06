@@ -1,14 +1,17 @@
 name: "Create Issue Comment via API"
 
 on:
-  workflow_dispatch:
-    inputs:
-      issue_id:
-        description: "ID of the GitHub issue to comment on"
-        required: true
-      comment_body:
-        description: "The content of the comment"
-        required: true
+  repository_dispatch:
+    types: [webhook]
+# on:
+#   workflow_dispatch:
+#     inputs:
+#       issue_id:
+#         description: "ID of the GitHub issue to comment on"
+#         required: true
+#       comment_body:
+#         description: "The content of the comment"
+#         required: true
 
 jobs:
   comment-on-issue:
