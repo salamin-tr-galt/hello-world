@@ -1,9 +1,14 @@
 name: "Create Issue Comment via API"
 
 on:
-  repository_dispatch:
-    types:
-      - create_issue_comment
+  workflow_dispatch:
+    inputs:
+      issue_id:
+        description: "ID of the GitHub issue to comment on"
+        required: true
+      comment_body:
+        description: "The content of the comment"
+        required: true
 
 jobs:
   comment-on-issue:
@@ -13,5 +18,5 @@ jobs:
         run: |
           curl -X POST -H "Authorization: Bearer ${{ secrets.GH_TOKEN }}" \
           -H "Accept: application/vnd.github.v3+json" \
-          https://api.github.com/repos/salamin-tr-galt/hello-world/issues/${{ github.event.client_payload.issue_id }}/comments \
-          -d '{"body": "${{ github.event.client_payload.comment_body }}"}'
+          https://api.github.com/repos/salamin-tr-galt/hello-world/issues/${{ github.event.inputs.issue_id }}/comments \
+          -d '{"body": "${{ github.event.inputs.comment_body }}"}'
